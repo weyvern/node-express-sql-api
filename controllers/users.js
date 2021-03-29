@@ -1,7 +1,12 @@
 import pool from '../db/pg.js';
 
 export const getAllUsers = async (req, res) => {
-  res.send('GET /');
+  try {
+    const { rows } = await pool.query('SELECT * FROM users;');
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
 };
 
 export const getSingleUser = async (req, res) => {
