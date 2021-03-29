@@ -6,6 +6,7 @@ import {
   updateUser,
   deleteUser
 } from '../controllers/users.js';
+import checkUser from '../middlewares/checkUser.js';
 
 const users = express.Router();
 
@@ -20,7 +21,7 @@ users.get('/', getAllUsers);
     @desc   Get single user
     @access Public
 */
-users.get('/:id', getSingleUser);
+users.get('/:id', checkUser, getSingleUser);
 /* 
     @route  POST /
     @desc   Create new user
@@ -32,12 +33,12 @@ users.post('/', createNewUser);
     @desc   Update user
     @access Public
 */
-users.put('/:id', updateUser);
+users.put('/:id', checkUser, updateUser);
 /* 
     @route  DEL /:id
     @desc   Delete user
     @access Public
 */
-users.delete('/:id', deleteUser);
+users.delete('/:id', checkUser, deleteUser);
 
 export default users;

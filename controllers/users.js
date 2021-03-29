@@ -10,7 +10,7 @@ export const getAllUsers = async (req, res) => {
 };
 
 export const getSingleUser = async (req, res) => {
-  res.send('GET /:id');
+  res.send(req.user);
 };
 
 export const createNewUser = async (req, res) => {
